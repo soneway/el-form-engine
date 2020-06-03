@@ -8,13 +8,13 @@
     }
   }
 
-  // 数据添加项按钮
-  .add-icon {
-    cursor: pointer;
-    line-height: @input-height;
-
-    &:hover {
-      color: @success-color;
+  // 对象/数组中禁止多列显示
+  .object-wrapper,
+  .array-wrapper {
+    // 复写样式
+    .el-col {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
 
@@ -22,18 +22,23 @@
   .object-wrapper {
     background: fade(#000, 3%);
     overflow: hidden;
+    padding-left: 2em;
+    padding-right: 1em;
 
     &:after {
       content: '⋯';
     }
 
-    & > .form-editor-item {
-      display: none;
+    & > .el-col {
+      & > .form-editor-item {
+        display: none;
+      }
     }
 
     & > .object-toggle-icon {
       position: absolute;
-      left: 1em;
+      left: 0.6em;
+      top: 0.6em;
       color: #999;
       transition: all 0.2s;
       transform: rotate(-90deg);
@@ -51,8 +56,10 @@
         display: none;
       }
 
-      & > .form-editor-item {
-        display: flex;
+      & > .el-col {
+        & > .form-editor-item {
+          display: block;
+        }
       }
 
       & > .object-toggle-icon {
@@ -67,6 +74,18 @@
     }
   }
 
+  // 数据添加项按钮
+  .add-icon {
+    position: absolute;
+    right: 0;
+    top: -1.5em;
+    cursor: pointer;
+
+    &:hover {
+      color: @success-color;
+    }
+  }
+
   // 数组删除按钮
   .array-delete-icon {
     position: absolute;
@@ -74,11 +93,16 @@
     top: 0;
     cursor: pointer;
     visibility: hidden;
+    font-size: 20px;
 
     &:hover {
       visibility: visible;
       color: @error-color;
     }
+  }
+
+  .form-editor-item-array {
+    margin-bottom: 0;
   }
 
   // 只读/禁用状态

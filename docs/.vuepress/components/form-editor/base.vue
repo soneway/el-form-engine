@@ -122,11 +122,6 @@
       type: 'boolean',
     },
 
-    region: {
-      label: '地区',
-      type: 'region',
-    },
-
     object: {
       label: '对象',
       type: 'object',

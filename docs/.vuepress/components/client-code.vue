@@ -1,6 +1,6 @@
 <template>
   <div
-    class="clinet-code"
+    class="client-code"
     :class="_class">
     <div class="slot-wrapper">
       <slot></slot>
@@ -45,7 +45,7 @@
   @import "~element-ui/lib/theme-chalk/index.css";
   @import "../../../src/styles/components/index";
 
-  .clinet-code {
+  .client-code {
     margin: 1rem 0;
     border: 1px solid #eee;
     border-radius: 10px;

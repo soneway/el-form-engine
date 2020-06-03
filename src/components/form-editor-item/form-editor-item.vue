@@ -35,10 +35,10 @@
           v-bind="props"
           v-if="type === 'radio'"
           v-model="value[keyName]"
-          :readonly="readonly"
-          :disabled="disabled">
+          :disabled="disabled || readonly">
           <el-radio
             v-for="(item, index) in options"
+            v-bind="item.props"
             :label="item.value"
             :key="index">
             {{ item.label }}
@@ -53,6 +53,7 @@
           :disabled="disabled">
           <el-checkbox
             v-for="(item, index) in options"
+            v-bind="item.props"
             :label="item.value"
             :key="index">
             {{ item.label }}
@@ -63,8 +64,7 @@
           v-bind="props"
           v-if="type === 'select'"
           v-model="value[keyName]"
-          :readonly="readonly"
-          :disabled="disabled"
+          :disabled="disabled || readonly"
           :placeholder="placeholder"
           :multiple="schema.multiple">
           <el-option
@@ -81,23 +81,21 @@
           </el-option>
         </el-select>
 
-        <el-checkbox
+        <el-switch
           v-bind="props"
           v-if="type === 'boolean'"
           v-model="value[keyName]"
-          :readonly="readonly"
-          :disabled="disabled">
-        </el-checkbox>
+          :disabled="disabled || readonly">
+        </el-switch>
 
         <div
           v-if="type === 'object'"
           class="object-wrapper"
           :class="{ expand: this.expand }">
-          <el-icon
-            icon="arrow-down"
-            class="object-toggle-icon"
+          <i
+            class="object-toggle-icon el-icon-caret-bottom"
             @click="onToggleClick">
-          </el-icon>
+          </i>
           <form-editor-item
             v-for="(item, key) in fields"
             :pca-json="item.pcaJson || pcaJson"
@@ -122,18 +120,16 @@
             :sup-key-name="itemProp"
             :key="index"
             :key-name="index">
-            <el-icon
+            <i
               title="删除项"
-              icon="close-circle"
-              class="array-delete-icon"
+              class="array-delete-icon el-icon-circle-close"
               @click="onItemDeleteClick(index)">
-            </el-icon>
+            </i>
           </form-editor-item>
-          <el-icon
-            icon="plus-circle"
-            class="add-icon"
-            @click="onItemAddClick">添加项
-          </el-icon>
+          <i
+            class="add-icon el-icon-circle-plus-outline"
+            @click="onItemAddClick"> 添加项
+          </i>
         </div>
 
         <el-date-picker
@@ -260,7 +256,7 @@
           return placeholder
         }
 
-        const selectTypes = ['select', 'nation']
+        const selectTypes = ['select']
         if (selectTypes.indexOf(type) !== -1) {
           return `请选择${label}`
         }
