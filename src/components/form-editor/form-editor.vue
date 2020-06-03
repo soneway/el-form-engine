@@ -66,13 +66,7 @@
       readonly: Boolean,
       span: {
         type: Number,
-        default: 24,
-      },
-      pcaJson: {
-        type: Object,
-        default () {
-          return {}
-        },
+        default: 12,
       },
       labelWidth: String,
       labelPosition: {
@@ -81,7 +75,7 @@
       },
       gutter: {
         type: Number,
-        default: 30,
+        default: 24,
       },
     },
     computed: {

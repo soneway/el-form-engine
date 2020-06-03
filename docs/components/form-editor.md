@@ -55,7 +55,6 @@
 | labelAlign   | label的文字对齐方式 | left,center,right | - | - |
 | render  | 表单域自定义渲染函数, 表单域将渲染该函数返回的值 | Function | - | - |
 | options  | 选项数据源, radio,select,checkbox时有效, 格式如: [ { label, value }, { label, value } ] 或 [ value, value ] | Array | - | - |
-| pcaJson  | 地区组件数据源, region时有效 | Array | - | - |
 | props  | 其他属性对象, 将直接v-bind到表单组件上 | Object | - | - |
 | depRules  | 依赖校验规则 | Array | - | - |
 | depStyles  | 依赖样式 | Function | - | - |
@@ -83,9 +82,9 @@
 ### events
 | 参数      | 说明    | 返回值 |
 |---------- |-------- |--- |
-| fieldadd     |   添加项事件  | type, keyName | 
-| fieldsort     |   排序  | keys | 
-| itemclick     |   项点击  | {keyName} | 
+| fieldadd     |   添加项事件  | type, keyName |
+| fieldsort     |   排序  | keys |
+| itemclick     |   项点击  | {keyName} |
 
 
 ### methods

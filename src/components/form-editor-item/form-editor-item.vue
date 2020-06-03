@@ -37,8 +37,8 @@
           v-model="value[keyName]"
           :disabled="disabled || readonly">
           <el-radio
-            v-for="(item, index) in options"
             v-bind="item.props"
+            v-for="(item, index) in options"
             :label="item.value"
             :key="index">
             {{ item.label }}
@@ -52,8 +52,8 @@
           :readonly="readonly"
           :disabled="disabled">
           <el-checkbox
-            v-for="(item, index) in options"
             v-bind="item.props"
+            v-for="(item, index) in options"
             :label="item.value"
             :key="index">
             {{ item.label }}
@@ -98,7 +98,7 @@
           </i>
           <form-editor-item
             v-for="(item, key) in fields"
-            :pca-json="item.pcaJson || pcaJson"
+            :item-span="24"
             :class="_objectClass"
             :schema="item"
             v-model="objectModel"
@@ -113,7 +113,7 @@
           class="array-wrapper">
           <form-editor-item
             v-for="(_, index) in arrayModel"
-            :pca-json="pcaJson"
+            :item-span="24"
             :class="_arrayClass"
             :schema="arraySchema"
             v-model="arrayModel"
@@ -137,8 +137,6 @@
           v-if="isDatepicker"
           v-model="value[keyName]"
           :type="type"
-          :value-type="schema.valueType || 'format'"
-          :format="schema.format || dateFormat"
           :range="schema.range"
           :readonly="readonly"
           :disabled="disabled">
@@ -160,13 +158,6 @@
   import { getDepConfig } from '../../scripts/utils/helper'
 
   const name = 'form-editor-item'
-  const dateFormatMap = {
-    date: 'YYYY-MM-DD',
-    year: 'YYYY',
-    month: 'YYYY-MM',
-    datetime: 'YYYY-MM-DD HH:mm:ss',
-    time: 'HH:mm:ss',
-  }
 
   export default {
     name,
@@ -184,7 +175,7 @@
       keyName: [String, Number],
       supKeyName: String,
       value: [Object, Array],
-      pcaJson: Object,
+      itemSpan: Number,
     },
     data () {
       return {
@@ -333,11 +324,7 @@
       },
       // 是否日期选择
       isDatepicker () {
-        return ['date', 'year', 'month', 'datetime', 'time'].includes(this.type)
-      },
-
-      dateFormat () {
-        return dateFormatMap[this.type]
+        return ['date', 'dates', 'daterange', 'year', 'month', 'week'].includes(this.type)
       },
 
       // 只读状态
@@ -370,7 +357,7 @@
       },
       // 占的格数
       span () {
-        return this.schema.span || this.formEditor.span
+        return this.schema.span || this.itemSpan || this.formEditor.span
       },
     },
     watch: {

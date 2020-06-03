@@ -21,18 +21,17 @@
       label: '文本',
       type: 'text',
       rules: [
-        {type: 'string', required: true},
-        {type: 'string', pattern: '^([1][3,4,5,6,7,8,9])\\d{9}$', message: '不符合正则'},
+        { type: 'string', required: true },
+        { type: 'string', pattern: '^([1][3,4,5,6,7,8,9])\\d{9}$', message: '不符合正则' },
       ],
       // 栅格布局所占格数
-      span: 6,
-      default: '11',
+      span: 8,
     },
 
     number: {
       label: '数字',
       type: 'number',
-      span: 6,
+      span: 8,
       depRules: [
         {
           dep: {
@@ -56,13 +55,21 @@
       ],
     },
 
+    boolean: {
+      label: '布尔值',
+      type: 'boolean',
+      span: 8,
+    },
+
     textarea: {
       label: '文本域',
       type: 'textarea',
       maxlength: 5,
+      default: '11',
       rules: [
-        {type: 'string', max: 4},
+        { type: 'string', max: 4 },
       ],
+      span: 24,
     },
 
     radio: {
@@ -70,9 +77,9 @@
       label: '单选-radio',
       type: 'radio',
       options: [
-        {label: '广东', value: 'gd'},
-        {label: '江西', value: 'jx'},
-        {label: '山东', value: 'sd'},
+        { label: '广东', value: 'gd' },
+        { label: '江西', value: 'jx' },
+        { label: '山东', value: 'sd' },
       ],
     },
 
@@ -81,9 +88,9 @@
       label: '单选-select',
       type: 'select',
       options: [
-        {label: '广东', value: 'gd'},
-        {label: '江西', value: 'jx'},
-        {label: '山东', value: 'sd'},
+        { label: '广东', value: 'gd' },
+        { label: '江西', value: 'jx' },
+        { label: '山东', value: 'sd' },
       ],
       props: {
         filterable: true,
@@ -95,9 +102,9 @@
       label: '多选-checkbox',
       type: 'checkbox',
       options: [
-        {label: '广东', value: 'gd'},
-        {label: '江西', value: 'jx'},
-        {label: '山东', value: 'sd'},
+        { label: '广东', value: 'gd' },
+        { label: '江西', value: 'jx' },
+        { label: '山东', value: 'sd' },
       ],
     },
 
@@ -107,9 +114,9 @@
       type: 'select',
       multiple: true,
       options: [
-        {label: '广东', value: 'gd'},
-        {label: '江西', value: 'jx'},
-        {label: '山东', value: 'sd'},
+        { label: '广东', value: 'gd' },
+        { label: '江西', value: 'jx' },
+        { label: '山东', value: 'sd' },
       ],
       props: {
         filterable: true,
@@ -117,14 +124,10 @@
       },
     },
 
-    boolean: {
-      label: '布尔值',
-      type: 'boolean',
-    },
-
     object: {
       label: '对象',
       type: 'object',
+      span: 24,
       fields: {
         text: {
           type: 'text',
@@ -152,11 +155,12 @@
     array: {
       label: '数组',
       type: 'array',
+      span: 24,
       fields: {
         name: {
           type: 'text',
           rules: [
-            {type: 'string', required: true},
+            { type: 'string', required: true },
           ],
         },
         age: {
@@ -165,9 +169,9 @@
       },
     },
 
-    custom: {
+    customRender: {
       label: '自定义渲染函数',
-      render: (h, {value, keyName, schema, supKeyName}) => <el-input
+      render: (h, { value, keyName, schema, supKeyName }) => <el-input
         value={value[keyName]}
         onInput={(val) => {
           // 手动实现双向绑定
@@ -176,14 +180,45 @@
       />,
     },
 
+    date: {
+      type: 'date',
+      label: '日期',
+      default: +new Date,
+    },
+
+    daterange: {
+      type: 'daterange',
+      label: '日期范围',
+    },
+
+    dates: {
+      type: 'dates',
+      label: '多日期',
+    },
+
+    year: {
+      type: 'year',
+      label: '年',
+    },
+
+    month: {
+      type: 'month',
+      label: '月',
+    },
+
+    week: {
+      type: 'week',
+      label: '周',
+    },
+
     datetime: {
       type: 'datetime',
-      label: '日期',
+      label: '日期时间',
     },
   }
 
   export default {
-    data() {
+    data () {
       return {
         formData: {},
         schema,
@@ -191,7 +226,7 @@
     },
 
     methods: {
-      onClick() {
+      onClick () {
         this.$refs.formEditor.validate(
           (data) => {
             console.log('验证成功', data)
@@ -203,15 +238,13 @@
       },
     },
 
-    mounted() {
+    mounted () {
       setTimeout(() => {
         this.formData = {
           'object': {
-            'object': {'name': '2222', 'age': 3333},
+            'object': { 'name': '2222', 'age': 3333 },
             'text': '222', 'number': 333333,
           },
-          'array': [],
-          datetime: '2019-11-11 12:00:00',
         }
       }, 1000)
     },

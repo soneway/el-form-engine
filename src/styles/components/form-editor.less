@@ -8,25 +8,15 @@
     }
   }
 
-  // 对象/数组中禁止多列显示
-  .object-wrapper,
-  .array-wrapper {
-    // 复写样式
-    .el-col {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-  }
-
   // 对象容器
   .object-wrapper {
     background: fade(#000, 3%);
     overflow: hidden;
-    padding-left: 2em;
-    padding-right: 1em;
+    padding-left: 1em;
 
     &:after {
       content: '⋯';
+      padding-left: 0.6em;
     }
 
     & > .el-col {
@@ -71,6 +61,14 @@
       & + .array-delete-icon {
         visibility: visible;
       }
+    }
+  }
+
+  // 数组容器
+  .array-wrapper {
+    & > .el-col {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
 
