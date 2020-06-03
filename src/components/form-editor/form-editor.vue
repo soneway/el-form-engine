@@ -77,6 +77,11 @@
         type: Number,
         default: 24,
       },
+      // 语言
+      lang: {
+        type: String,
+        default: 'zhs',
+      },
     },
     computed: {
       _class () {

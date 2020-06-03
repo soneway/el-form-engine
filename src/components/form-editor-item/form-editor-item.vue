@@ -121,14 +121,14 @@
             :key="index"
             :key-name="index">
             <i
-              title="删除项"
+              :title="langMap.deleteItem"
               class="array-delete-icon el-icon-circle-close"
               @click="onItemDeleteClick(index)">
             </i>
           </form-editor-item>
           <i
             class="add-icon el-icon-circle-plus-outline"
-            @click="onItemAddClick"> 添加项
+            @click="onItemAddClick"> {{ langMap.addItem }}
           </i>
         </div>
 
@@ -166,6 +166,7 @@
   import RenderCell from '../render-cell'
   import $bus from '../../scripts/utils/bus'
   import { getDepConfig } from '../../scripts/utils/helper'
+  import lang from '../form-editor/lang'
 
   const name = 'form-editor-item'
 
@@ -231,6 +232,11 @@
           .join('.')
       },
 
+      // 语言
+      langMap () {
+        return lang[this.formEditor.lang] || lang.en
+      },
+
       // 数据类型
       type () {
         const { schema: { type } } = this
@@ -259,10 +265,10 @@
 
         const selectTypes = ['select']
         if (selectTypes.includes(type) || this.isDatepicker) {
-          return `请选择${label}`
+          return `${this.langMap.pleaseSelect}${label}`
         }
 
-        return `请输入${label}`
+        return `${this.langMap.pleaseInput}${label}`
       },
       // 校验规则
       rules () {
@@ -280,7 +286,7 @@
           if (item.required) {
             // message为空时,优化message
             if (!item.message) {
-              return { ...item, message: `${this.label}不能为空` }
+              return { ...item, message: `${this.label}${this.langMap.isRequired}` }
             }
           }
           // 正则
