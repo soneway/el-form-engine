@@ -7,6 +7,8 @@
     </form-editor>
     <p style="padding-bottom: 20px;">
       <el-button
+        type="primary"
+        size="small"
         @click="onClick">表单校验
       </el-button>
     </p>
@@ -120,7 +122,6 @@
       ],
       props: {
         filterable: true,
-        collapseTags: true,
       },
     },
 
@@ -178,42 +179,64 @@
           value[keyName] = val
         }}
       />,
+      span: 24,
+    },
+
+    daterange: {
+      type: 'daterange',
+      label: '日期范围',
+      span: 8,
     },
 
     date: {
       type: 'date',
       label: '日期',
       default: +new Date,
-    },
-
-    daterange: {
-      type: 'daterange',
-      label: '日期范围',
+      span: 8,
     },
 
     dates: {
       type: 'dates',
       label: '多日期',
+      span: 8,
     },
 
     year: {
       type: 'year',
       label: '年',
+      span:8
     },
 
     month: {
       type: 'month',
       label: '月',
+      span:8
     },
 
     week: {
       type: 'week',
       label: '周',
+      span:8
+    },
+
+    datetimerange: {
+      type: 'datetimerange',
+      label: '日期时间范围',
     },
 
     datetime: {
       type: 'datetime',
       label: '日期时间',
+    },
+
+    timerange: {
+      type: 'timerange',
+      label: '时间范围',
+    },
+
+    time: {
+      type: 'time',
+      label: '时间',
     },
   }
 

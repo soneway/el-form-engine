@@ -1,12 +1,7 @@
 @import "../../styles/utils/index";
 
 .form-editor {
-  // 复写样式
-  &.el-form--label-top {
-    .el-form-item__label {
-      padding: 0;
-    }
-  }
+  @import "form-editor-el-override";
 
   // 对象容器
   .object-wrapper {

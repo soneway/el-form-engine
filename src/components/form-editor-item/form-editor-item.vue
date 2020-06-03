@@ -137,10 +137,20 @@
           v-if="isDatepicker"
           v-model="value[keyName]"
           :type="type"
-          :range="schema.range"
+          :placeholder="placeholder"
           :readonly="readonly"
           :disabled="disabled">
         </el-date-picker>
+
+        <el-time-picker
+          v-bind="props"
+          v-if="isTimepicker"
+          v-model="value[keyName]"
+          :is-range="type === 'timerange'"
+          :placeholder="placeholder"
+          :readonly="readonly"
+          :disabled="disabled">
+        </el-time-picker>
       </template>
 
       <slot></slot>
@@ -248,7 +258,7 @@
         }
 
         const selectTypes = ['select']
-        if (selectTypes.indexOf(type) !== -1) {
+        if (selectTypes.includes(type) || this.isDatepicker) {
           return `请选择${label}`
         }
 
@@ -324,7 +334,11 @@
       },
       // 是否日期选择
       isDatepicker () {
-        return ['date', 'dates', 'daterange', 'year', 'month', 'week'].includes(this.type)
+        return ['date', 'dates', 'daterange', 'year', 'month', 'week', 'datetime', 'datetimerange'].includes(this.type)
+      },
+      // 是否时间选择
+      isTimepicker () {
+        return ['time', 'timerange'].includes(this.type)
       },
 
       // 只读状态

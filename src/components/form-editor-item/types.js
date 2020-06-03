@@ -1,5 +1,4 @@
 export default [
-  'label',
   'text',
   'number',
   'textarea',
@@ -16,5 +15,7 @@ export default [
   'month',
   'week',
   'datetime',
+  'datetimerange',
   'time',
+  'timerange',
 ]
