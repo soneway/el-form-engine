@@ -47,7 +47,7 @@
   "dependencies": {
     "element-ui": "^2.13.2",
     "utils-lib": "latest",
-    "vue": "2.6.10"
+    "vue": "3.0.0"
   },
   "devDependencies": {
     "@soneway/division": "latest",
